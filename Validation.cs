@@ -85,5 +85,18 @@ namespace ValidationCheck
             }
             return returnVal;
         }
+        public static bool isRanger(string rangerName)
+        {
+            string[] rangerList = new string[]{"Zayto", "Ollie Akana", "Amelia Jones", "Izzy Garcia", "Javi Garcia", "Aiyon"};
+            bool returnVal = false;
+            for ( int i = 0; i < rangerList.Length; i++ )
+            {
+                if (rangerList[i].Contains(rangerName))
+                {
+                    returnVal = true;
+                }
+            }
+            return returnVal;
+        }
     }
 }
