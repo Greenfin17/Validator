@@ -38,12 +38,46 @@ namespace Validator
         static bool IsEmail(string email)
         {
             bool returnVal = false;
-            email.Trim().ToLower();
+            email = email.Trim().ToLower();
             Regex emailRegEx = new Regex(@"^[[a-z.1-9]{1,50}@[a-z1-9]{1,50}[.](com|net|org|edu|mil|gov|edu)$");
-            // Regex emailRegEx = new Regex(@"^[a-z.]{1,50}[@][a-z]{1,50}[.][com|org|net|mil|gov|edu");
             if (emailRegEx.IsMatch(email))
             {
                 returnVal = true;
+            }
+            return returnVal;
+        }
+
+        static bool EveryOtherCapitalized(string testString)
+        {
+            bool returnVal = true;
+            bool cont = true;
+            testString = testString.Trim();
+            char[] trimChars = { '!'};
+            testString = testString.TrimEnd(trimChars);
+            int index = 0;
+
+            foreach(char character in testString)
+            {
+                if ( !Char.IsWhiteSpace(character) && ( index == 0 || index %2 == 0 )){
+                    if (!Char.IsLower(character))
+                    {
+                        cont = false;
+                        returnVal = false;
+                    }
+                }
+                else if (!Char.IsWhiteSpace(character) && Char.IsLower(character)){
+                    cont = false;
+                    returnVal = false;
+                }
+                if (!cont)
+                {
+                    break;
+                }
+                // Don't count whitespaces
+                if (!Char.IsWhiteSpace(character))
+                {
+                    index++;
+                }
             }
             return returnVal;
         }
@@ -96,8 +130,10 @@ namespace Validator
                 Console.WriteLine("  1) Pin code");
                 Console.WriteLine("  2) Phone Number");
                 Console.WriteLine("  3) Email");
+                Console.WriteLine("  4) Phrase with odd letters lower case, even capitalized");
                 Console.WriteLine("Enter 'x' to exit");
-                string[] phrase = new string[3]{"pin code", "phone number", "email address"};
+                string[] phrase = new string[4]{"pin code", "phone number", "email address",
+                                    "phrase"};
                     
                 inputKey = Console.ReadKey(true);
                 Console.Write('\n');
@@ -119,6 +155,12 @@ namespace Validator
                         if(!GetInput(phrase[2], IsEmail))
                         {
                             Console.WriteLine($"Valid {phrase[2]} not entered. Please try again later.");
+                        }
+                        break;
+                    case ('4'):
+                        if(!GetInput(phrase[3], EveryOtherCapitalized))
+                        {
+                            Console.WriteLine("Phrase does not alternate lower and upper case. Please try again.");
                         }
                         break;
                     case ('x'):
