@@ -20,8 +20,6 @@ namespace Validator
             }
             return returnVal;
         }
-
-
         static bool IsPhone(string phone)
         {
             bool returnVal = false;
@@ -52,78 +50,6 @@ namespace Validator
 
         public delegate bool Validation(string input);
 
-
-        static bool GetPin()
-        {
-            Console.WriteLine("Enter a pin code between 4 and 8 digits, numbers only");
-            string pin = Console.ReadLine();
-            ConsoleKeyInfo escKey;
-            bool invalid = true;
-            bool returnVal = false;
-            while (invalid)
-            {
-                if (IsPinCode(pin))
-                {
-                    Console.WriteLine("Your pin is valid. Thank you");
-                    invalid = false;
-                    returnVal = true;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid pin. Please try again. Hit \"Esc\" to exit pin input");
-                    escKey = Console.ReadKey(true);
-                    if (escKey.Key == ConsoleKey.Escape)
-                    {
-                        invalid = false;
-                    }
-                    else
-                    {
-                        Console.Write(escKey.KeyChar);
-                        pin = Console.ReadLine();
-                        pin = pin.Insert(0, escKey.KeyChar.ToString());
-
-                    }
-                }
-            }
-            return returnVal;
-        }
-
-        static bool getPhone()
-        {
-            Console.WriteLine("Enter your phone number:");
-            string phone = Console.ReadLine();
-            ConsoleKeyInfo escKey;
-            bool invalid = true;
-            bool returnVal = false;
-            while (invalid)
-            {
-                if (IsPhone(phone))
-                {
-                    Console.WriteLine("Your phone is valid. Thank you");
-                    invalid = false;
-                    returnVal = true;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid phone. Please try again. Hit \"Esc\" to exit phone input");
-                    escKey = Console.ReadKey(true);
-                    if (escKey.Key == ConsoleKey.Escape)
-                    {
-                        invalid = false;
-                    }
-                    else
-                    {
-                        Console.Write(escKey.KeyChar);
-                        phone = Console.ReadLine();
-                        // insert the first character if it was not the Esc key;
-                        phone = phone.Insert(0, escKey.KeyChar.ToString());
-
-                    }
-                }
-            }
-            return returnVal;
-
-        }
         static bool GetInput(string phrase, Validation validationFunction)
         {
             Console.WriteLine($"Enter your {phrase}:");
