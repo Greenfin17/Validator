@@ -85,7 +85,7 @@ namespace ValidationCheck
             }
             return returnVal;
         }
-        public static bool isRanger(string rangerName)
+        public static bool IsRanger(string rangerName)
         {
             string[] rangerList = new string[]{"Zayto", "Ollie Akana", "Amelia Jones", "Izzy Garcia", "Javi Garcia", "Aiyon"};
             bool returnVal = false;
@@ -94,6 +94,37 @@ namespace ValidationCheck
                 if (rangerList[i].Contains(rangerName))
                 {
                     returnVal = true;
+                }
+            }
+            return returnVal;
+        }
+
+        private static string removePunctuation(string originalStr)
+        {
+            string returnStr = string.Empty;
+            for (int i = 0; i < originalStr.Length; i++)
+            {
+                int testChar = (int)originalStr[i];
+                if ((testChar >= 65 && testChar <= 90) || (testChar >= 97 && testChar <= 122))
+                {
+                    returnStr += originalStr[i];
+                }
+            }
+            return returnStr;
+        }
+
+        public static bool IsPalindrome(string testStr)
+        {
+            bool returnVal = true;
+            string noPunct = string.Empty;
+            noPunct = removePunctuation(testStr);
+            noPunct = noPunct.ToLower();
+            for (int i = 0, j = noPunct.Length - 1; i < noPunct.Length && j >= i; i++, j--)
+            {
+                if ( noPunct[i] != noPunct[j])
+                {
+                    returnVal = false;
+                    break;
                 }
             }
             return returnVal;
