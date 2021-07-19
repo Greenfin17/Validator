@@ -55,9 +55,10 @@ namespace Validator
                 Console.WriteLine("  2) Phone Number");
                 Console.WriteLine("  3) Email");
                 Console.WriteLine("  4) Phrase with odd letters lower case, even capitalized");
+                Console.WriteLine("  5) Enter name of Power Ranger");
                 Console.WriteLine("Enter 'x' to exit");
-                string[] phrase = new string[4]{"pin code", "phone number", "email address",
-                                    "phrase"};
+                string[] phrase = new string[]{"pin code", "phone number", "email address",
+                                    "phrase", "power ranger"};
                     
                 inputKey = Console.ReadKey(true);
                 Console.Write('\n');
@@ -85,6 +86,12 @@ namespace Validator
                         if(!GetInput(phrase[3], EveryOtherCapitalized))
                         {
                             Console.WriteLine("Phrase does not alternate lower and upper case. Please try again.");
+                        }
+                        break;
+                    case ('5'):
+                        if (!GetInput(phrase[4], isRanger))
+                        {
+                            Console.WriteLine($"Valid {phrase[4]} not entered. Please try again later.");
                         }
                         break;
                     case ('x'):
