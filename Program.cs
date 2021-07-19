@@ -19,7 +19,7 @@ namespace Validator
             {
                 if (validationFunction(input))
                 {
-                    Console.WriteLine($"Your {phrase} is valid. Thank you");
+                    Console.WriteLine($"Your {phrase} is valid. Thank you.\n");
                     invalid = false;
                     returnVal = true;
                 }
@@ -56,9 +56,10 @@ namespace Validator
                 Console.WriteLine("  3) Email");
                 Console.WriteLine("  4) Phrase with odd letters lower case, even capitalized");
                 Console.WriteLine("  5) Enter name of Power Ranger");
+                Console.WriteLine("  6) Palindrome");
                 Console.WriteLine("Enter 'x' to exit");
                 string[] phrase = new string[]{"pin code", "phone number", "email address",
-                                    "phrase", "power ranger"};
+                                    "phrase", "power ranger", "palindrome"};
                     
                 inputKey = Console.ReadKey(true);
                 Console.Write('\n');
@@ -89,7 +90,13 @@ namespace Validator
                         }
                         break;
                     case ('5'):
-                        if (!GetInput(phrase[4], isRanger))
+                        if (!GetInput(phrase[4], IsRanger))
+                        {
+                            Console.WriteLine($"Valid {phrase[4]} not entered. Please try again later.");
+                        }
+                        break;
+                    case ('6'):
+                        if (!GetInput(phrase[5], IsPalindrome))
                         {
                             Console.WriteLine($"Valid {phrase[4]} not entered. Please try again later.");
                         }
