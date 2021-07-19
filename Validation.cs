@@ -87,7 +87,9 @@ namespace ValidationCheck
         }
         public static bool IsRanger(string rangerName)
         {
-            string[] rangerList = new string[]{"Zayto", "Ollie Akana", "Amelia Jones", "Izzy Garcia", "Javi Garcia", "Aiyon"};
+            string[] rangerList = new string[]{"Zayto", "Ollie Akana", "Amelia Jones", "Izzy Garcia", "Javi Garcia", "Aiyon",
+                                                "Devon Daniels", "Ravi Shaw", "Zoey Reeves", "Blaze", "Ravi Shaw", "Roxy", "Nate Silva", "Steel",
+                                                "Steel Silva", "Steel2"};
             bool returnVal = false;
             for ( int i = 0; i < rangerList.Length; i++ )
             {
